@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>상품</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>상품 번호</th>
+                <th>상품 이름</th>
+                <th>상품 가격</th>
+                <th>등록 날짜</th>
+                <th>수정 날짜</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:object="${detail}">
+                <td><span th:text="*{productNo}"></span></td>
+                <td><span th:text="*{productName}"></span></td>
+                <td><span th:text="*{salePrice}"></span></td>
+                <td><span th:text="*{registerYmdt}"></span></td>
+                <td><span th:text="*{updateYmdt}"></span></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

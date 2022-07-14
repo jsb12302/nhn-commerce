@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>상품 테스트</title>
+</head>
+
+<body>
+    <h1>상품 목록 조회</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>상품 번호</th>
+                <th>상품 이름</th>
+                <th>상품 가격</th>
+                <th>등록 날짜</th>
+                <th>수정 날짜</th>
+                <th>관리</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="list:${productList}">
+                <td><a th:href="@{product/{productNo}(productNo=${list.productNo})}" th:text="${list.productNo}"></a> </td>
+                <td><span th:text="${list.productName}"></span> </td>
+                <td><span th:text="${list.salePrice}"></span> </td>
+                <td><span th:text="${list.registerYmdt}"></span> </td>
+                <td><span th:text="${list.updateYmdt}"></span> </td>
+                <td>
+                    <form method="get" th:action="@{product/delete}">
+                        <input type="hidden" name="productNo" th:value="${list.productNo}">
+                        <button type="submit">삭제</button>
+                    </form>
+                    <button th:onclick="|location.href='@{/modifyProductPage(productNo=${list.productNo})}'|">수정</button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+    <a th:href="@{/addProductPage}">상품 추가</a>
+</body>
+</html>
